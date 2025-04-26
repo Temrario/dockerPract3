@@ -15,7 +15,10 @@ jobs:
         run: |
           docker build . -t temrario/dockerpract3:latest
 
+      - name: Log in to Docker Hub
+        run: |
+          echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login --username temrario --password-stdin
+
       - name: Push Docker image
         run: |
-          docker login -u temrario -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push temrario/dockerpract3:latest
